@@ -15,14 +15,10 @@ class DockingStation
   def release_bike
     raise RuntimeError, "There are no bikes" if empty?
     working_bikes = []
-    @bikes.each_with_index {|bike, i|
-      unless bike.broken?
-        working_bikes << i
-      end
-    }
+    @bikes.each_with_index {|bike, i| working_bikes << i unless bike.broken? }
     raise RuntimeError, "There are no working bikes" if working_bikes.count == 0
-    output = @bikes.fetch(working_bikes[0])
-    @bikes.delete_at(working_bikes[0])
+   output = @bikes.fetch(working_bikes[0])
+   @bikes.delete_at(working_bikes[0])
     return output
   end
 
