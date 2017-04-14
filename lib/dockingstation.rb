@@ -27,8 +27,14 @@ class DockingStation
     @bikes << bike
   end
 
-  private
+  def return_bike(bike)
+    raise RuntimeError, "All bike are return" if full?
+    @bikes << bike
 
+  end
+
+  private
+#
   def full?
     @bikes.count >= @capacity ? true : false
   end

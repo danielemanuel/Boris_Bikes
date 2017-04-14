@@ -35,6 +35,18 @@ describe DockingStation do
     end
   end
 
+  describe "#return_bikes" do
+        it { is_expected.to respond_to :return_bike }
+        # it "returns broken and working bikes" do
+        #   expect{ subject.return_bike}.to eq [bike]
+        # end
+        it 'raises an error when all the bikes are returned' do
+          (subject.capacity).times { subject.return_bike(bike) }
+          expect{subject.return_bike(bike)}.to raise_error(RuntimeError)
+        end
+
+    end
+
   describe '#initialize' do
     it 'sets capacity' do
       expect(subject.capacity).to be DockingStation::DEFAULT_CAPACITY
